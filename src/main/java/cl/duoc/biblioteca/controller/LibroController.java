@@ -2,15 +2,13 @@ package cl.duoc.biblioteca.controller;
 
 import cl.duoc.biblioteca.model.Libro;
 import cl.duoc.biblioteca.service.LibroService;
-
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-@RestController
-@RequestMapping
+import java.util.List;
 
+@RestController
+@RequestMapping("/api/v1/libros")
 public class LibroController {
 
     @Autowired
@@ -19,14 +17,43 @@ public class LibroController {
     @GetMapping
     public List<Libro> listarLibros() {
         return libroService.getLibros();
-
     }
 
     @PostMapping
-
-    public Libro  agregarLibro(@RequestBody Libro Libro) {
-        return libroService.saveLibro(Libro);
-    
+    public Libro agregarLibro(@RequestBody Libro libro) {
+        return libroService.saveLibro(libro);
     }
 
+    @GetMapping("/{id}")
+    public Libro buscarLibro(@PathVariable int id) {
+        return libroService.getLibroId(id);
+    }
+
+    @PutMapping("/{id}")
+    public Libro actualizarLibro(@PathVariable int id, @RequestBody Libro libro) {
+        // el id lo usaremos mas adelante
+        return libroService.updateLibro(libro);
+    }
+
+    @DeleteMapping("/{id}")
+    public String eliminarLibro(@PathVariable int id) {
+        return libroService.deleteLibro(id);
+    }
+
+    @GetMapping("/total")
+    public int total() {
+    return libroService.totalLibrosV2();
+    }
+
+    @GetMapping("/isbn/{isbn}")
+    public Libro buscarLibroPorIsbn(@PathVariable String isbn) {
+
+        return libroService.getLibroPorIsbn(isbn);
+    }
+
+    @GetMapping("/fechaPublicacion/{fechaPublicacion}")
+    public List<Libro> verLibrosPorAnio(@PathVariable int fechaPublicacion) {
+
+        return libroService.getLibrosPorAnio(fechaPublicacion);
+    }
 }
