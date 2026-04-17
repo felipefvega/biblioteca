@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 public class Libro {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
@@ -26,7 +26,7 @@ public class Libro {
     @Column(name = "editorial", nullable = false, length = 100)
     private String editorial;
 
-    @Column(name = "fecha_publicacion", nullable = false)
+    @Column(name = "fechaPublicacion", nullable = false)
     private int fechaPublicacion;
 
     @Column(name = "autor", nullable = false, length = 150)

@@ -16,32 +16,35 @@ public class LibroService {
         return libroRepository.findAll();
 
     }
+  
+    public List<Libro> getLibrosPorAutor(String autor) {
+        return libroRepository.findByAutorContainingIgnoreCase(autor);
+    }
 
     public Libro saveLibro(Libro libro) {
-        // return libroRepository.guardar(libro);
+      
         return libroRepository.save(libro);
     }
 
     public Libro getLibroId(int id) {
-        // return libroRepository.buscarPorId(id);
+       
         return libroRepository.findById(id).orElse(null);
     }
 
     public Libro updateLibro(Libro libro) {
-        // return libroRepository.actualizar(libro);
+        
         return libroRepository.save(libro);
     }
 
     public String deleteLibro(int id) {
-        // libroRepository.eliminar(id);
-        // return "producto eliminado";
+    
         libroRepository.deleteById(id);
         return "Libro eliminado";
     }
 
-    // LA ACCIÓN LA HACE EL SERVICE
+    
     public int totalLibros() {
-        // return libroRepository.obtenerLibros().size();
+        
         return (int) libroRepository.count();
     }
 }

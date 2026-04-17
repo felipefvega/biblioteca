@@ -19,6 +19,13 @@ public class LibroController {
         return libroService.getLibros();
     }
 
+    @GetMapping(params = "autor")
+    public List<Libro> listarLibrosPorAutor(@RequestParam String autor) {
+        
+
+        return libroService.getLibrosPorAutor(autor);
+    }
+
     @PostMapping
     public Libro agregarLibro(@RequestBody Libro libro) {
         return libroService.saveLibro(libro);
