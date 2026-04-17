@@ -40,20 +40,5 @@ public class LibroController {
         return libroService.deleteLibro(id);
     }
 
-    @GetMapping("/total")
-    public int total() {
-    return libroService.totalLibrosV2();
-    }
-
-    @GetMapping("/isbn/{isbn}")
-    public Libro buscarLibroPorIsbn(@PathVariable String isbn) {
-
-        return libroService.getLibroPorIsbn(isbn);
-    }
-
-    @GetMapping("/fechaPublicacion/{fechaPublicacion}")
-    public List<Libro> verLibrosPorAnio(@PathVariable int fechaPublicacion) {
-
-        return libroService.getLibrosPorAnio(fechaPublicacion);
-    }
+    
 }
